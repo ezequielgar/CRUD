@@ -49,7 +49,7 @@
       <section>
         <h1 class="display-3 mt-5 text-center">Administrar Productos</h1>
         <hr />
-        <form>
+        <form id="formProducto">
           <div class="mb-3">
             <label for="codigo" class="form-label">Codigo</label>
             <input
@@ -58,6 +58,9 @@
               id="codigo"
               placeholder="# 1234..."
             />
+            <div class="invalid-feedback">
+              Debe ingresar al menos un caracter
+            </div>
           </div>
           <div class="mb-3">
             <label for="producto" class="form-label">Producto</label>
@@ -142,6 +145,51 @@
                 <td>The Black Keys - LP</td>
                 <td>1</td>
                 <td>https://m.media-amazon.com/images/I/91ZDKAC2mXL._SX466_.jpg</td>
+                <td class= "col-sm-12 col-md-1">
+                  <button type="submit" class="btn btn-warning my-1">
+                    Editar
+                  </button>
+                  <button type="submit" class="btn btn-danger">
+                    Borrar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">567</th>
+                <td>Led Zeppelin IV Remastered '2014'</td>
+                <td>Led Zeppelin - LP</td>
+                <td>1</td>
+                <td>https://m.media-amazon.com/images/I/81evsr3Oq0L._SX466_.jpg</td>
+                <td class= "col-sm-12 col-md-1">
+                  <button type="submit" class="btn btn-warning my-1">
+                    Editar
+                  </button>
+                  <button type="submit" class="btn btn-danger">
+                    Borrar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">530</th>
+                <td>Abbey Road Anniversary '2019'</td>
+                <td>The Beatles</td>
+                <td>1</td>
+                <td>https://m.media-amazon.com/images/I/81dUVKQDBEL._SX466_.jpg</td>
+                <td class= "col-sm-12 col-md-1">
+                  <button type="submit" class="btn btn-warning my-1">
+                    Editar
+                  </button>
+                  <button type="submit" class="btn btn-danger">
+                    Borrar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">499</th>
+                <td>Wish You Were Here '2011'</td>
+                <td>Pink Floyd - LP</td>
+                <td>1</td>
+                <td>https://m.media-amazon.com/images/I/71m0ofUWYXL._SX466_.jpg</td>
                 <td class= "col-sm-12 col-md-1">
                   <button type="submit" class="btn btn-warning my-1">
                     Editar
