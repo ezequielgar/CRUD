@@ -1,61 +1,11 @@
-function campoRequerido(input) {
-  if (input.value.trim().length > 0) {
-    //console.log("paso la validacion");
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    //console.log("no pasa la validacion");
-    input.className = "form-control is-invalid";
-    return false;
-  }
-}
+import {
+  campoRequerido,
+  validarGral,
+  validarNros,
+  validarURL,
+} from "./validaciones.js";
 
-function validarNros(input) {
-  // crear una expresion regular
-  let patron = /^[0-9]{1,3}$/;
-  // probar el funcionamiento del patro o expresion regular
-  if (patron.test(input.value)) {
-    // cumple la expresion regular
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    // si no cumple la expresion regular
-    input.className = "form-control is-invalid";
-    return false;
-  }
-}
-
-function validarURL(input) {
-  let patron = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
-
-  if (patron.test(input.value)) {
-    input.className = "form-control is-valid";
-    return true;
-  } else {
-    input.className = "form-control is-invalid";
-    return false;
-  }
-}
-
-function validarGral(e) {
-  e.preventDefault();
-  console.log("funcion validar gral");
-  //volver a validar todos los campos
-  if (
-    campoRequerido(campoCodigo) &&
-    campoRequerido(campoProducto) &&
-    campoRequerido(campoDescripcion) &&
-    validarNros(campoCantidad) &&
-    validarURL(campoURL)) {
-    console.log("si paso la validacion");
-    let alerta = document.getElementById("msjAlerta");
-    alerta.className = "alert alert-danger my-2 d-none";
-  } else {
-    console.log("no paso la validacion");
-    let alerta = document.getElementById("msjAlerta");
-    alerta.className = "alert alert-danger my-2";
-  }
-}
+import {Producto} from "./crearProducto.js";
 
 //agregar eventos a los elementos del formulario
 
@@ -70,6 +20,9 @@ let campoCantidad = document.getElementById("cantidad");
 let campoURL = document.getElementById("url");
 
 let formularioProducto = document.getElementById("formProducto");
+
+//lista de productos
+let listaProductos = [];
 
 campoCodigo.addEventListener("blur", () => {
   campoRequerido(campoCodigo);
@@ -89,4 +42,45 @@ campoURL.addEventListener("blur", () => {
   validarURL(campoURL);
 });
 
-formularioProducto.addEventListener("submit", validarGral);
+formularioProducto.addEventListener("submit", guardarProducto);
+
+function guardarProducto(e) {
+  //validar los campos del formulario
+  e.preventDefault();
+  if (
+    validarGral(
+      campoCodigo,
+      campoProducto,
+      campoDescripcion,
+      campoCantidad,
+      campoURL
+    )
+  ) {
+
+  }
+
+  // agregar/crear un producto
+  agregarProducto();
+}
+
+function agregarProducto() {
+  console.log("aqui se crea el producto");
+  let productoNuevo = new Producto(campoCodigo.value,campoProducto.value,campoDescripcion.value,campoCantidad.value,campoURL.value);
+  console.log(productoNuevo);
+  // guardar el producto creado en el arreglo
+  listaProductos.push(productoNuevo);
+  console.log(listaProductos);
+  limpiarFormulario();
+
+}
+
+function limpiarFormulario(){
+  //limpiar los value de todo el formulario
+  formularioProducto.reset();
+  // limpiar las clases
+  campoCodigo.className = 'form-control';
+  campoCantidad.className = 'form-control';
+  campoProducto.className = 'form-control';
+  campoDescripcion.className = 'form-control';
+  campoURL.className = 'form-control';
+}
