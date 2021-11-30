@@ -112,7 +112,7 @@ function crearFila(producto){
   <td>${producto.cantidad} </td>
   <td>${producto.url} </td>
   <td class= "col-sm-12 col-md-1">
-    <button type="submit" class="btn btn-warning my-1">
+    <button type="submit" class="btn btn-warning my-1" onclick="prepararEdicionProducto(${producto.codigo})">
       Editar
     </button>
     <button type="submit" class="btn btn-danger">
@@ -138,4 +138,20 @@ function cargaInicial(){
 function borrarTabla(){
   let tabla = document.getElementById('tablaProductos');
   tabla.innerHTML = '';
+}
+
+window.prepararEdicionProducto = (codigo) => {
+  console.log(codigo)
+  // obtener el obj a modificar
+
+  let productoBuscado = listaProductos.find((itemProducto) => {return itemProducto.codigo == codigo})
+  console.log(productoBuscado);
+
+  // mostrar los datos en el form
+  campoCodigo.value = productoBuscado.codigo;
+  campoProducto.value = productoBuscado.producto;
+  campoDescripcion.value = productoBuscado.descripcion;
+  campoCantidad.value = productoBuscado.cantidad;
+  campoURL.value = productoBuscado.url;
+
 }
