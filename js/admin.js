@@ -45,6 +45,8 @@ campoURL.addEventListener("blur", () => {
 
 formularioProducto.addEventListener("submit", guardarProducto);
 
+cargaInicial();
+
 function guardarProducto(e) {
   //validar los campos del formulario
   e.preventDefault();
@@ -80,6 +82,7 @@ function agregarProducto() {
     'El producto fue creado correctamente!',
     'success'
   )
+  crearFila(productoNuevo);
 
 
 }
@@ -98,4 +101,41 @@ function limpiarFormulario(){
 function guardarLocalstorage(){
   localStorage.setItem('listaProductosKey', JSON.stringify(listaProductos));
 
+}
+
+function crearFila(producto){
+  let tabla = document.getElementById('tablaProductos');
+  tabla.innerHTML += `<tr>
+  <th scope="row">${producto.codigo} </th>
+  <td>${producto.producto} </td>
+  <td>${producto.descripcion}</td>
+  <td>${producto.cantidad} </td>
+  <td>${producto.url} </td>
+  <td class= "col-sm-12 col-md-1">
+    <button type="submit" class="btn btn-warning my-1">
+      Editar
+    </button>
+    <button type="submit" class="btn btn-danger">
+      Borrar
+    </button>
+  </td>
+</tr>`
+
+}
+
+function cargaInicial(){
+  //verifica si hay datos en el localStorage || en listas productos
+  if (listaProductos.length > 0) {
+    //dibujar fila
+    listaProductos.forEach((itemProducto) => {
+      crearFila(itemProducto)
+
+    });
+    
+  }
+}
+
+function borrarTabla(){
+  let tabla = document.getElementById('tablaProductos');
+  tabla.innerHTML = '';
 }
