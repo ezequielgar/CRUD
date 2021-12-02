@@ -215,3 +215,4 @@ window.borrarProducto = function(codigo) {
   Swal.fire("Producto Eliminado", "El producto fue eliminado correctamente", "success");
   
 }
+
